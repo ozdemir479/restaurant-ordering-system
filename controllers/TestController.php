@@ -1,7 +1,8 @@
 <?php
 
+
 class TestController {
-    public function index(){
-        echo file_get_contents("view/index.php");
+    public static function getMenus(){
+        echo "Test Fonksiyonu";
     }
 }

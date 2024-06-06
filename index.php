@@ -1,22 +1,17 @@
 <?php
 include("./routes/class.php");
 include("./controllers/TestController.php");
-use TestController\TestController;
-// Örnek bir GET route tanımlama
+include("./controllers/MenuHandler.php");
+
 Route::get('/', function () {
     echo "Ana sayfa";
 });
 
-// Örnek bir POST route tanımlama
-Route::get('/user', ['TestController', 'index']);
+Route::get('/user', ['MenuHandler', 'getMenus']);
+Route::get('/test', ['MenuHandler', 'getMenusTest']);
 
-
-Route::get('/open-file', function () {
-    $dosya_icerik = file_get_contents('view/index.php');
-    echo $dosya_icerik;
+Route::get('/menu', function () {
+    include("./view/index.php");
 });
 
-
 Route::dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
-
-

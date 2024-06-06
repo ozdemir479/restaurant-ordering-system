@@ -27,17 +27,14 @@ class Route
     {
         $callback = self::match($method, $path);
         if ($callback) {
-            // Eğer $callback bir dizi ise, bu bir sınıf metodu çağrımıdır.
             if (is_array($callback)) {
                 $controller = new $callback[0]();
                 $method = $callback[1];
                 $controller->$method();
             } else {
-                // Aksi halde, bu bir fonksiyon çağrımıdır.
                 call_user_func($callback);
             }
         } else {
-            // 404 sayfasını görüntüle
             http_response_code(404);
             echo '<!DOCTYPE html>
             <html lang="en">
