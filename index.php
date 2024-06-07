@@ -13,5 +13,8 @@ Route::get('/test', ['MenuHandler', 'getMenusTest']);
 Route::get('/menu', function () {
     include("./view/index.php");
 });
+Route::post('/menu', function () {
+    include("./view/index.php");
+});
 
 Route::dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

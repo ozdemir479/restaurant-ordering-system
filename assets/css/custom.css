@@ -1,0 +1,53 @@
+.message-box {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0; /* Başlangıçta mesaj kutusunu gizleyin */
+  transition: opacity 0.5s ease; /* Geçiş efekti ekle */
+}
+
+.message-content {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #f44336;
+}
+
+
+.message-box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
+}
+
+.message-content {
+  padding: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
