@@ -197,7 +197,7 @@ class DB {
         }
     }
 
-    public function filter($value) {
+    public static function filter($value) {
         $filterValue = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
         $filterValue = addslashes($filterValue);
         return $filterValue;

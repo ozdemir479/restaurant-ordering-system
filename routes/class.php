@@ -1,16 +1,28 @@
 <?php
+
 class Route
 {
     private static $routes = [];
+    private $prefix;
 
-    public static function get($path, $callback)
+    public static function group($prefix, $callback)
     {
-        self::$routes[] = ['method' => 'GET', 'path' => $path, 'callback' => $callback];
+        $callback(new self($prefix));
     }
 
-    public static function post($path, $callback)
+    public function __construct($prefix)
     {
-        self::$routes[] = ['method' => 'POST', 'path' => $path, 'callback' => $callback];
+        $this->prefix = $prefix;
+    }
+
+    public function get($path, $callback)
+    {
+        self::$routes[] = ['method' => 'GET', 'path' => $this->prefix . $path, 'callback' => $callback];
+    }
+
+    public function post($path, $callback)
+    {
+        self::$routes[] = ['method' => 'POST', 'path' => $this->prefix . $path, 'callback' => $callback];
     }
 
     public static function match($method, $path)
@@ -25,7 +37,8 @@ class Route
 
     public static function dispatch($method, $path)
     {
-        $callback = self::match($method, $path);
+        $requestUri = strtok($path, '?');
+        $callback = self::match($method, $requestUri);
         if ($callback) {
             if (is_array($callback)) {
                 $controller = new $callback[0]();
@@ -35,8 +48,14 @@ class Route
                 call_user_func($callback);
             }
         } else {
-            http_response_code(404);
-            echo '<!DOCTYPE html>
+            self::notFound();
+        }
+    }
+
+    public static function notFound()
+    {
+        http_response_code(404);
+        echo '<!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -71,6 +90,7 @@ class Route
             </body>
             </html>
             ';
-        }
     }
 }
+
+?>

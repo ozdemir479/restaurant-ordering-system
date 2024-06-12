@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+header, footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+nav {
+    background-color: #f4f4f4;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+nav ul li a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #ddd;
+}
+nav ul li a:hover {
+    background-color: #aaa;
+}
+main {
+    padding: 20px;
+    text-align: center;
+}
+footer {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+}
+body.loaded {
+    opacity: 1;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.product {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product h2 {
+    margin-top: 0;
+}
+
+.product p {
+    margin-bottom: 0;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.header {
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #ddd;
+}
+
+.header > div {
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+    border-right: 1px solid #ddd;
+}
+
+.row > div {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-btn {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #45a049;
+}
+
+#productImage {
+    max-width: 100%; /* Resmin eni en fazla %100 olacak şekilde sınırlanır */
+    max-height: 100vh; /* Resmin boyu, ekran yüksekliğini geçmeyecek şekilde sınırlanır */
+    width: auto; /* Resmin otomatik olarak genişletilmesi sağlanır */
+    height: auto; /* Resmin otomatik olarak genişletilmesi sağlanır */
+    display: block; /* Resmin diğer içeriklerle uyumlu bir şekilde görüntülenmesi sağlanır */
+    margin: auto; /* Resmin diğer içeriklerle ortalanması sağlanır */
+    cursor: pointer; /* Resmin üzerine geldiğinde fare işaretinin değişmesi sağlanır */
+    transition: max-width 0.5s, max-height 0.5s; /* Animasyonlu geçiş */
+}
