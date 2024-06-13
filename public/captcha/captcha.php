@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../routes/class.php");
+include("../Routes/class.php");
 if (@$_SERVER['HTTP_REFERER'] == "") {
     Route::notFound();
 } else {

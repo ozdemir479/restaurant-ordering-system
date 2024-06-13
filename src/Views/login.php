@@ -50,8 +50,8 @@ if(@$_SESSION['username']){
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #EC85EE; /* Varsayılan arka plan rengi */
-            color: #fff; /* Varsayılan metin rengi */
+            background-color: #EC85EE;
+            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -65,20 +65,24 @@ if(@$_SESSION['username']){
         }
         .video-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: -1;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
             min-width: 100%;
             min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
     </style>
@@ -87,9 +91,8 @@ if(@$_SESSION['username']){
 <div class="video-container">
         <video autoplay loop muted>
             <source src="/assets/videos/background.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            Tarayıcınız Video Oynatmayı Desteklemiyor.
         </video>
-        <!-- Diğer içerikler buraya gelebilir -->
     </div>
 <div class="container mt-5">
     <div class="login-container">
@@ -138,7 +141,7 @@ if(@$_SESSION['username']){
                         });
                         setInterval(function () {
                             window.location.href = "/admin/dashboard";
-                        }, 2000);
+                        }, 1000);
                     } else {
                         Swal.fire({
                             icon: 'error',

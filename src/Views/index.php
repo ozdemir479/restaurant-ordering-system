@@ -1,21 +1,24 @@
+<?php
+$siteInfo = MainController::getSiteInfo();
+$siteTitle = $siteInfo['siteTitle'];
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="utf-8">
-      <title>droplet | POS - Customer Order System</title>
+      <title><?= $siteTitle ?> | Sipariş</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content>
-      <meta name="author" content>
-      <link href="assets/css/vendor.min.css" rel="stylesheet">
-      <link href="assets/css/app.min.css" rel="stylesheet">
+      <link href="../../assets/css/vendor.min.css" rel="stylesheet">
+      <link href="../../assets/css/app.min.css" rel="stylesheet">
       <link rel="stylesheet" href="/assets/css/custom.css">
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
    </head>
+   
    <body class="pace-top">
       <div id="app" class="app app-content-full-height app-without-sidebar app-without-header">
          <div id="content" class="app-content p-0">
             <div class="pos pos-with-menu pos-with-sidebar" id="pos">
-               <div class="pos-container">
+               <div class="pos-container">   
                   <div class="pos-menu">
                      <div class="logo">
                         <a href="javascript:;">
@@ -73,16 +76,13 @@
                            </ul>
                         </div>
                      </div>
-                     <div id="messageBox" class="message-box">
-                        <div class="message-content">
-                           <span class="close" id="closeButton">&times;</span>
-                           <h2>Yeni Mesaj</h2>
-                           <p>
-                              <!-- Jsden gelecek mesaj --> 
-                           </p>
+                     <div id="notification" class="d-none">
+                          <div class="alert alert-info alert-dismissible fade show" role="alert">
+                           <div id="notificationText"></div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
                         </div>
                      </div>
-                  </div>
                   <div class="pos-content">
                      <div class="pos-content-container h-100">
                         <div class="row gx-4">
@@ -221,6 +221,7 @@
                               ?> 
                         </div>
                      </div>
+                     
                   </div>
                   <div class="pos-sidebar" id="pos-sidebar">
                      <div class="h-100 d-flex flex-column p-0">
@@ -231,12 +232,13 @@
                               </button>
                            </div>
                            <div class="icon"><i class="fa fa-plate-wheat"></i></div>
-                           <div class="title">
+                           <div id="tableNumber" class="title">
+                              Masa 
                               <?php 
-                                 $tableNumber = (int) @$_GET['masa'];
-                                 $tableNumber = str_pad($tableNumber, 2, "0", STR_PAD_LEFT);
-                                 echo "Masa ".$tableNumber;
-                                 ?> 
+                              $tableNumber = (int) @$_GET['masa'];
+                              $tableNumber = str_pad($tableNumber, 2, "0", STR_PAD_LEFT);
+                              echo $tableNumber;
+                              ?> 
                            </div>
                            <div class="order small">Sipariş</div>
                         </div>
@@ -266,7 +268,7 @@
                         <span class="small fw-semibold">Garson Çağır</span>
                         </span>
                         </button>
-                        <button type="submit" class="btn btn-theme flex-fill d-flex align-items-center justify-content-center">
+                        <button type="submit" id="order" class="btn btn-theme flex-fill d-flex align-items-center justify-content-center">
                         <span>
                         <i class="fa fa-cash-register fa-lg my-10px d-block"></i>
                         <span class="small fw-semibold">Sipariş Ver</span>
@@ -287,10 +289,10 @@
          </div>
          <a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
       </div>
+
       <script src="/assets/js/javascript.php?file=custom.js"></script>
       <script src="/assets/js/javascript.php?file=vendor.min.js" type="f557d77c454a941eb67815a2-text/javascript"></script>
       <script src="/assets/js/javascript.php?file=app.min.js" type="f557d77c454a941eb67815a2-text/javascript"></script>
       <script src="/assets/js/javascript.php?file=rocket-loader.min.js" data-cf-settings="f557d77c454a941eb67815a2-|49" defer></script>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53034621-1" type="f557d77c454a941eb67815a2-text/javascript"></script>
    </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 require_once("models/DB.php");
-require_once("jsonkit.php");
+require_once("jsonKit.php");
 require_once("models/Cache.php");
 
 use Table\DB;
