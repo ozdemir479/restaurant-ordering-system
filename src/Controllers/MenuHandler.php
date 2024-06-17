@@ -1,25 +1,22 @@
 <?php
 
-require_once("models/DB.php");
-require_once("jsonKit.php");
-require_once("models/Cache.php");
+require_once("./src/Models/DB.php");
 
-use Table\DB;
+require_once("JsonKit.php");
+
+use Models\DB;
 
 class MenuHandler{
     public static function getMenus(){
-        $results = DB::table('products')
+        return DB::table('products')
             ->select(['products.id', 'products.productName', 'products.productSize', 'products.productSmall', 'products.productMedium', 'products.productLarge', 'products.productPrice', 'products.productDesc', 'products.productImage', 'categories.categorySlug', 'categories.categorySlug'])
-            ->join('categories', 'productCategory', '=', 'id') 
+            ->join('categories', 'productCategory', '=', 'id')
             ->get();
-
-
-        return $results;
     }
 
-    public static function getCategories(){
-        $sql = DB::table("categories")->get();
-        return $sql;
+    public static function getCategories(): bool|array|null
+    {
+        return DB::table("categories")->get();
     }
 
     public static function getAddons($id){
@@ -34,7 +31,8 @@ class MenuHandler{
         return $addons;
     }
 
-    public static function listProducts(){
+    public static function listProducts(): void
+    {
         $results = DB::table('products')
         ->select([
             'products.id', 'products.productName', 'products.productSize', 
@@ -69,9 +67,7 @@ class MenuHandler{
     }
 
     public static function getSiteInfo(){
-        $siteInfo = DB::table("sitesettings")->first();
-
-        return $siteInfo;
+        return DB::table("sitesettings")->first();
     }
 
     private static function getList($table, $id = null, $column = "id"){

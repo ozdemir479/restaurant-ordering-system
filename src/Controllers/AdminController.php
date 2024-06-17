@@ -1,5 +1,5 @@
 <?php
-use Table\DB;
+use Models\DB;
 class Admin{
     public static function login(){
         session_start();
@@ -19,7 +19,7 @@ class Admin{
                     echo jsonKit::success("Giriş Başarılı", 200);
                     return true;
                     } else {
-                    echo jsonKit::failWithoutHRC("Kullanıcı Adı Veya Şifre Hatalı", 400);
+                    echo jsonKit::failWithoutHRC("Kullanıcı Adı Veya Şifre Hatalı");
                     return false;
                 }
             } else {
@@ -27,7 +27,7 @@ class Admin{
                 return false;
             }
         } else {
-            echo jsonKit::failWithoutHRC("Kullanıcı Adı Veya Şifre Hatalı", 400);
+            echo jsonKit::failWithoutHRC("Kullanıcı Adı Veya Şifre Hatalı");
             return false;
         }
     }
@@ -46,5 +46,28 @@ class Admin{
         echo jsonKit::success("Çıkış Başarılı", 200);
         exit;
     }
+
+    public static function getWaiters(){
+        $sql = DB::table('waiterCalls')->get();
+        jsonKit::json($sql, "Veri Bulundu", 200);
+    }
+
+    public static function insertWaiter(){
+        $tableNumber = DB::filter(@$_POST['tableNumber']);
+        try {
+            if($tableNumber){
+                $sql = DB::table('waiterCalls')->insert([
+                    'tableNumber' => $tableNumber,
+                ]);
+                if($sql){
+                    echo jsonKit::success("Kayıt Başarılı", 200);
+                }
+            } else {
+                echo jsonKit::fail("Masa Numarası Gönderilmedi", 400);
+            }
+
+        } catch(Exception $e){
+            echo jsonKit::fail($e->getMessage(), $e->getCode());
+        }
+    }
 }
-?>

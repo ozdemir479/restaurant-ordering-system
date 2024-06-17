@@ -1,5 +1,5 @@
 <?php
-use Table\DB;
+use Models\DB;
 
 class MainController {
     public static function getSiteInfo(){

@@ -23,7 +23,6 @@ class jsonKit
         header('Content-Type: application/json; charset=utf-8');
         $json = json_encode($json, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
         http_response_code($http_response_code);
-        echo $json;
     }
 
     public static function success($message) {
@@ -42,7 +41,16 @@ class jsonKit
             'message' => $message,
         ];
         header('Content-Type: application/json; charset=utf-8');
-        $json = json_encode($json, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
-        echo $json;
+        echo json_encode($json, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+    }
+
+    public static function fail($message, $http_response_code = 400) {
+        $json = [
+            'status' => false,
+            'message' => $message,
+        ];
+        http_response_code($http_response_code);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($json, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
     }
 }
